@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Flying Forest</string>
+    <string name="title_activity_main">WSN Flying Forest</string>
 </resources>

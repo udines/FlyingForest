@@ -31,14 +31,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         recyclerView = (RecyclerView)findViewById(R.id.main_recyclerview);
         eventRef = FirebaseDatabase.getInstance().getReference("event");
         query = eventRef;
@@ -51,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         ) {
             @Override
             protected void populateViewHolder(EventViewHolder viewHolder, EventModel model, int position) {
-                viewHolder.setView(model);
+                viewHolder.setView(model, getApplicationContext());
             }
         };
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

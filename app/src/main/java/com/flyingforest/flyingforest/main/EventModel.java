@@ -9,8 +9,20 @@ public class EventModel {
     private String title;
     private String location;
     private long time;
-    private long lat;
-    private long lng;
+    private double lat;
+    private double lng;
+
+    public EventModel() {
+    }
+
+    public EventModel(String id, String title, String location, long time, double lat, double lng) {
+        this.id = id;
+        this.title = title;
+        this.location = location;
+        this.time = time;
+        this.lat = lat;
+        this.lng = lng;
+    }
 
     public String getId() {
         return id;
@@ -44,19 +56,19 @@ public class EventModel {
         this.time = time;
     }
 
-    public long getLat() {
+    public double getLat() {
         return lat;
     }
 
-    public void setLat(long lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public long getLng() {
+    public double getLng() {
         return lng;
     }
 
-    public void setLng(long lng) {
+    public void setLng(double lng) {
         this.lng = lng;
     }
 }

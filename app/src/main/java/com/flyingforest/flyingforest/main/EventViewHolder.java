@@ -6,6 +6,10 @@ import android.widget.TextView;
 
 import com.flyingforest.flyingforest.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Created by fata on 8/17/2017.
  */
@@ -25,5 +29,14 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
 
     public void setView(EventModel model) {
         title.setText(model.getTitle());
+        location.setText(model.getLocation());
+        time.setText(getStringDate(model.getTime()));
+    }
+
+    private String getStringDate(long time) {
+        Date date = new Date();
+        date.setTime(time);
+        SimpleDateFormat format = new SimpleDateFormat("d MMM yyyy - hh:mm a", Locale.getDefault());
+        return format.format(date);
     }
 }

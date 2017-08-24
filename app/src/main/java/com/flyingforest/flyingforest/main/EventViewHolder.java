@@ -41,6 +41,8 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 Intent mapIntent = new Intent(context, MapActivity.class);
                 mapIntent.putExtra("idEvent", model.getId());
+                mapIntent.putExtra("lat", model.getLat());
+                mapIntent.putExtra("lng", model.getLng());
                 context.startActivity(mapIntent);
             }
         });

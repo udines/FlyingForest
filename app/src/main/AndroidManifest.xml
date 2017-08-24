@@ -28,6 +28,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.flyingforest.flyingforest.main.MainActivity" />
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDRGJlpY-UTSYwlLYchPQgUcdGF0hMLRv0"/>
+
     </application>
 
 </manifest>

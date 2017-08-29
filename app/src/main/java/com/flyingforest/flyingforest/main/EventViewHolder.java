@@ -5,11 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.flyingforest.flyingforest.R;
 import com.flyingforest.flyingforest.map.MapActivity;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,23 +31,26 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
     private final TextView time;
     private final TextView title;
     private final TextView location;
-    private final RecyclerView recyclerView;
     private final View view;
+    private final ImageView image;
+    private Context context;
+    private EventModel model;
 
     public EventViewHolder(View itemView) {
         super(itemView);
         time = (TextView)itemView.findViewById(R.id.item_event_time);
         title = (TextView)itemView.findViewById(R.id.item_event_title);
         location = (TextView)itemView.findViewById(R.id.item_event_location);
-        recyclerView = (RecyclerView)itemView.findViewById(R.id.item_event_recyclerview);
+        image = (ImageView)itemView.findViewById(R.id.item_event_image);
         view = itemView;
     }
 
-    public void setView(final EventModel model, final Context context) {
+    public void setView(final EventModel m, final Context c) {
+        this.context = c;
+        this.model = m;
         title.setText(model.getTitle());
         location.setText(model.getLocation());
         time.setText(getStringDate(model.getTime()));
-        displayImage();
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,9 +61,17 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
                 context.startActivity(mapIntent);
             }
         });
+        setImage();
     }
 
-    private void displayImage() {
+    private void setImage() {
+        StorageReference imageRef = FirebaseStorage.getInstance().getReference("image").child(model.getId()+".jpg");
+        Glide.with(context)
+                .using(new FirebaseImageLoader())
+                .load(imageRef)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .centerCrop()
+                .into(image);
     }
 
     private String getStringDate(long time) {

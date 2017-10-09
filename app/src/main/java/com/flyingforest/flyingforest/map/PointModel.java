@@ -9,15 +9,17 @@ public class PointModel {
     private String idEvent;
     private double lat;
     private double lng;
+    private int temp;
 
     public PointModel() {
     }
 
-    public PointModel(String id, String idEvent, double lat, double lng) {
+    public PointModel(String id, String idEvent, double lat, double lng, int temp) {
         this.id = id;
         this.idEvent = idEvent;
         this.lat = lat;
         this.lng = lng;
+        this.temp = temp;
     }
 
     public String getId() {
@@ -50,5 +52,13 @@ public class PointModel {
 
     public void setLng(double lng) {
         this.lng = lng;
+    }
+
+    public int getTemp() {
+        return temp;
+    }
+
+    public void setTemp(int temp) {
+        this.temp = temp;
     }
 }

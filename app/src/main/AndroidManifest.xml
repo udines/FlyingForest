@@ -30,24 +30,30 @@
                 android:value="com.flyingforest.flyingforest.main.MainActivity" />
         </activity>
 
-        <service
-            android:name=".notif.MyFirebaseMessagingService">
+        <service android:name=".notif.MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <service
-            android:name=".notif.MyFirebaseInstanceIDService">
+        <service android:name=".notif.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDRGJlpY-UTSYwlLYchPQgUcdGF0hMLRv0"/>
+            android:value="AIzaSyDRGJlpY-UTSYwlLYchPQgUcdGF0hMLRv0" />
 
+        <activity
+            android:name=".data.DataActivity"
+            android:label="@string/title_activity_data"
+            android:parentActivityName=".map.MapActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.flyingforest.flyingforest.map.MapActivity" />
+        </activity>
     </application>
 
 </manifest>
